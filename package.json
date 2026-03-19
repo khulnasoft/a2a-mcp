@@ -1,0 +1,54 @@
+{
+  "name": "a2a-mcp",
+  "version": "1.0.0",
+  "description": "A proxy tool that converts normal MCP servers to use lazy-loading pattern with three/four meta-tools",
+  "main": "dist/server.js",
+  "bin": {
+    "a2a-mcp": "dist/cli.js"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khulnasoft/a2a-mcp.git"
+  },
+  "homepage": "https://github.com/khulnasoft/a2a-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/khulnasoft/a2a-mcp/-/issues"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "dev": "ts-node src/cli.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "mcp",
+    "a2a-mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "proxy",
+    "lazy-loading",
+    "ai-tools",
+    "llm"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "eventsource-parser": "^3.0.6"
+  }
+}
