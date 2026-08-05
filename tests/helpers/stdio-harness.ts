@@ -47,6 +47,19 @@ export class StdioHarness {
       env,
     });
 
+    this.process.on('error', (err: Error) => {
+      const failure = new Error(
+        `StdioHarness: failed to spawn "${this.command} ${this.args.join(' ')}": ${err.message}`,
+      );
+      for (const [, pending] of this.pendingRequests) {
+        pending.reject(failure);
+      }
+      this.pendingRequests.clear();
+    });
+
+    // Writes after the child exits emit EPIPE; keep it out of the uncaught path.
+    this.process.stdin?.on('error', () => {});
+
     this.process.stderr?.on('data', (chunk: Buffer) => {
       this.stderrData += chunk.toString();
     });
