@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/khulnasoft/a2a-mcp#readme",
   "bugs": {
-    "url": "https://github.com/khulnasoft/a2a-mcp/-/issues"
+    "url": "https://github.com/khulnasoft/a2a-mcp/issues"
   },
   "scripts": {
     "build": "tsc",
