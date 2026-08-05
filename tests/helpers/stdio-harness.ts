@@ -92,16 +92,20 @@ export class StdioHarness {
     // This is deterministic (waits for an actual response) rather than relying
     // on a fixed sleep, and it also simulates a real MCP client, which must
     // send initialize before any other request.
-    await this.sendRequest('initialize', {
+    const init = await this.sendRequest('initialize', {
       protocolVersion: '2024-11-05',
       capabilities: {},
       clientInfo: { name: 'test-harness', version: '0.0.0' },
     });
+    if (init.error) {
+      throw new Error(
+        `StdioHarness: initialize failed: ${init.error.message}. Stderr: ${this.stderrData.slice(-500)}`,
+      );
+    }
 
     // Send the required initialized notification so the server considers the
     // session fully open. Notifications have no id and expect no response.
     this.sendNotification('notifications/initialized');
-  }
 
   async sendRequest(method: string, params?: any, timeoutMs = 10_000): Promise<JsonRpcResponse> {
     if (!this.process) {
