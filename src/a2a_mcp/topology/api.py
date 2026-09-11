@@ -1,28 +1,8 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 from .registry import TopologyRegistry
 
-def create_app(registry: TopologyRegistry):
-    """
-    Create and return a FastAPI application exposing topology endpoints.
-    
-    The returned app registers a GET /topology/agents endpoint that responds with JSON
-    {"agents": [...]} where the list is constructed from the provided topology
-    registry's get_agents() iterator.
-    
-    Returns:
-        FastAPI: Configured FastAPI application instance.
-    """
-    app = FastAPI()
-
-    @app.get("/topology/agents")
-    def list_agents():
-        """
-        Return the current set of registered agents.
-        
-        Returns:
-            dict: JSON-serializable mapping with key "agents" containing a list of agent IDs (list[str]).
-        """
-        return {"agents": list(registry.get_agents())}
+[... rest of second create_app definition continues ...]
 
 from fastapi import FastAPI
 from pydantic import BaseModel

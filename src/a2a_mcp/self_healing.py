@@ -51,7 +51,8 @@ def handle_anomaly(anomaly_data: dict) -> None:
 
 
 def infer_anomaly_type(anomaly_data: dict) -> str:
-def infer_anomaly_type(anomaly_data):
+     # Simple rules - replace with more sophisticated logic if needed
+     """
     # Simple rules - replace with more sophisticated logic if needed
     """
     Classify an anomaly represented by a dict using simple rule-based heuristics.
