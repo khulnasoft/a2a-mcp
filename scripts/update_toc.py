@@ -27,8 +27,16 @@ def extract_headers(min_level):
     log_debug(f"Extracting headers from {README_FILE}")
 
     headers = []
+    in_code_block = False
     with open(README_FILE, "r") as readme:
         for line in readme:
+            if re.match(r"^\s*(```|~~~)", line):
+                in_code_block = not in_code_block
+                continue
+
+            if in_code_block:
+                continue
+
             match = re.match(r"^(#{1,6})\s+(.+)", line)
             if match:
                 level = len(match.group(1))
